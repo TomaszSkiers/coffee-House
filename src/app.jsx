@@ -7,6 +7,8 @@ import { Navigation } from './components/navigation';
 import { Footer } from './components/footer';
 import { Login } from './pages/login';
 import { SignUp } from './pages/sign-up';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 
 const AppStructure = () => {
   return (
@@ -22,8 +24,11 @@ const AppStructure = () => {
 
 export const App = () => {
 
+  const queryClient = new QueryClient()
+
   return (
-      <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter >
         <Routes>
           <Route element={<AppStructure />}>
             <Route path="/" element={<Home />} />
@@ -34,5 +39,7 @@ export const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+    </QueryClientProvider>
+      
   );
 };
