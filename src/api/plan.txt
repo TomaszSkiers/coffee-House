@@ -1,4 +1,24 @@
-1. połączyć się z bazą danych pobrac token i zapisać w localStorage
+1. przerobic context użytkownika na redux i zapisać w stanie 
 
-2. ogarnąć interceptory do odświeżania tokena, może zrobić tak żeby token 
-    był za 
+co ja teraz mam, mam context user to trzeba usunąć 
+
+utworzyc reducera i context i slice user, 
+dane użytkownika będą w stanie user zamiast w kontekście, potem muszę 
+pazamieniać funkcje z context api na akcje z reducera
+
+
+* utworzyć slice user
+* utworzyć reducera
+* utworzyć kontekst
+* przekazać dane do stanu z komponentu login
+ (przemyśleć czy nie przenieść całej funkcji do autoryzacji użytkownika do slice)
+* pobrać dane ze stanu do navigacji
+
+* przekierowanie do logowania po utworzeniu nowego użytkownika,
+
+
+2. utworzyć koszyk zakupowy za pomoca redux toolkita
+
+
+
+3. przećwiczyć tworzenie <FormContextProvider> i <CommonTextField> jeszcze raz
