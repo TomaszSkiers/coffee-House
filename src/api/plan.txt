@@ -20,8 +20,40 @@ pazamieniać funkcje z context api na akcje z reducera
     bo jak tak się nad tym zastanowić to dane są w localStorage i w sumie to wystarczy
     nie wiem po co organizować całego użytkownika
 
+ZROBIONE: 
+- Utworzyłem store, slice user, dispach w login dadaje użytkownika do stanu
+- przy załadowaniu aplikacji automatyczne dana są dadawane z lacal lub sessio localStorage 
+- w navigation.jsx imię jest wstawiane po zalogowaniu, pobiera ze stanu,
+- wywaliłem context user, 
+-------------------------------------------------------------------------------
+
 
 2. utworzyć koszyk zakupowy za pomoca redux toolkita
+
+* klikam w przycisk addToCart i uruchamiam akcję w redux, która doda produkt
+    do tablicy produktów, 
+- muszę utworzyć nowy slice basket, 
+- muszę utworzyć akcję, która dada produkt do tablicy np: itemsów,
+- muszę dodać slice do store,
+
+* utworzyć komponent, który będzie wyświetlał ten koszyk, 
+- możliwość usuwania produktów,
+- możliwość dodania ilości produktów,
+- podsumowanie i cena końcowa,
+
+* i teraz przejście do procedury tworzenia zamówienia
+- przycisk, który rozpoczyna dodawanie zamówienia,
+- input do wprowadzenia adresu do wysyłki,
+
+** i tu kończę z rozmyślaniem najpierw zrobię sobie koszyk :) i go wyświetlę a 
+później będę myślał nad dodaniem zamówienia
+
+
+ZROBIONE: 
+- utworzony slice z akcjami, trzeba potestować, dodawanie produktów do stanu 
+    działa reszta nie ruszona,
+- dodałem ikonkę z ilością produktów w koszyku, nie podłaczyłem do store,  
+--------------------------------------------------------------------------------
 
 
 

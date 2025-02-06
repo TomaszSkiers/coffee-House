@@ -7,14 +7,29 @@ import {
   CardActions,
   Button,
   Box,
-} from "@mui/material";
-import { Link } from "react-router-dom";
-import { FavouriteButton } from "../favourite-button";
+} from '@mui/material'
+import { Link } from 'react-router-dom'
+import { FavouriteButton } from '../favourite-button'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../redux/cartSlice'
+
+//* ProductCardComponent
 
 const ProductCardComponent = ({ id, image, title, description, price }) => {
+  const dispatch = useDispatch()
+
+  const handleAdd = () => {
+    const product = {
+      id: id,
+      title: title,
+      price: price,
+    }
+    dispatch(addItem({...product, quantity: 1}))
+  }
+
   return (
-    <Card sx={{ position: "relative" }}>
+    <Card sx={{ position: 'relative' }}>
       <CardActionArea component={Link} to={`/product/${id}`}>
         <CardMedia component="img" image={`/products/${image}`} alt={title} />
         <CardContent>
@@ -29,18 +44,22 @@ const ProductCardComponent = ({ id, image, title, description, price }) => {
       <Box sx={{ flexGrow: 1 }} />
       <CardActions
         disableSpacing
-        sx={{ justifyContent: "space-between", p: 2 }}
+        sx={{ justifyContent: 'space-between', p: 2 }}
       >
         <Typography variant="subtitle1">${Number(price).toFixed(2)}</Typography>
         <Box>
-          <FavouriteButton />{" "}
-          <Button size="small" variant="outlined">
+          <FavouriteButton />{' '}
+          <Button 
+            size="small"
+             variant="outlined"
+            onClick={handleAdd}
+          >
             Add to cart
           </Button>
         </Box>
       </CardActions>
     </Card>
-  );
-};
+  )
+}
 ProductCardComponent.displayName = 'ProductCard'
 export const ProductCard = React.memo(ProductCardComponent)

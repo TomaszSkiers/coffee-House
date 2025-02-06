@@ -15,6 +15,9 @@ import CoffeeIcon from '@mui/icons-material/LocalCafe';
 import { useColorMode } from '../../contexts/color-mode/color-mode-context.jsx';
 import { useSelector } from 'react-redux';
 import { selectUserName } from '../../redux/userSlice.js';
+import { Badge } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
@@ -27,7 +30,9 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-//Navigation
+//* Navigation
+// podłączyć ilość produktów do ikonki
+
 export const Navigation = () => {
   const [categories, setCategories] = useState([]);
   const {mode, toggleColorMode} = useColorMode()
@@ -76,6 +81,12 @@ export const Navigation = () => {
           onClick={toggleColorMode}
         >
           {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+        <IconButton color='inherit'>
+          {/** podłączyć pod ilość produktów do strea  */}
+          <Badge badgeContent={4} color='secondary'>
+            <ShoppingCartIcon />
+          </Badge>
         </IconButton>
       </Toolbar>
     </AppBar>
