@@ -1,11 +1,11 @@
-import { TextField } from '@mui/material';
-import { useFormContext } from 'react-hook-form';
+import { TextField } from '@mui/material'
+import { useFormContext } from 'react-hook-form'
 
 export const CommonTextField = ({ name, label, ...props }) => {
   const {
     register,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext()
 
   return (
     <TextField
@@ -15,5 +15,5 @@ export const CommonTextField = ({ name, label, ...props }) => {
       helperText={errors[name]?.message}
       {...props}
     />
-  );
-};
+  )
+}

@@ -1,0 +1,4 @@
+1. połączyć się z bazą danych pobrac token i zapisać w localStorage
+
+2. ogarnąć interceptory do odświeżania tokena, może zrobić tak żeby token 
+    był za 

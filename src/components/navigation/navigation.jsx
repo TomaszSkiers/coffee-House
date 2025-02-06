@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link as RouterLink, NavLink } from 'react-router-dom';
 import { fetchCategories } from '../../api/products.js';
 import AppBar from '@mui/material/AppBar';
@@ -13,6 +13,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import CoffeeIcon from '@mui/icons-material/LocalCafe';
 import { useColorMode } from '../../contexts/color-mode/color-mode-context.jsx';
+import { UserContext } from '../../contexts/signIn-login-context/userContext.jsx';
+
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   textDecoration: 'none',
@@ -27,6 +29,9 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 export const Navigation = () => {
   const [categories, setCategories] = useState([]);
   const {mode, toggleColorMode} = useColorMode()
+  const {userName} = useContext(UserContext)
+ 
+  console.log('nazwa użytkownika')
   
   const fetchData = async () => {
     const data = await fetchCategories();
@@ -62,7 +67,7 @@ export const Navigation = () => {
           ))}
         </nav>
         <Button color="inherit" component={RouterLink} to="/login">
-          Login
+          {userName ? userName : 'login'} 
         </Button>
         <IconButton 
           sx={{ ml: 1 }}

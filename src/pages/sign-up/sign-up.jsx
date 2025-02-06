@@ -1,41 +1,49 @@
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { Link as RouterLink } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import Checkbox from '@mui/material/Checkbox'
+import Link from '@mui/material/Link'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import { Link as RouterLink } from 'react-router-dom'
 
-import { z } from 'zod';
-import { CommonTextField } from '../../components/common-inputs/CommonTextField';
-import { FormContextProvider } from '../../contexts/signIn-login-context/FormContextProvider';
-import { Controller } from 'react-hook-form';
-import { FormControl, FormControlLabel, FormHelperText } from '@mui/material';
+import { z } from 'zod'
+import { CommonTextField } from '../../components/common-inputs/CommonTextField'
+import { FormContextProvider } from '../../contexts/signIn-login-context/FormContextProvider'
+import { Controller } from 'react-hook-form'
+import { FormControl, FormControlLabel, FormHelperText } from '@mui/material'
+import { registerUser } from '../../api/user'
 
 // Zod schema
-const schema = z.object({
-  firstName: z.string().min(1, 'The field is required'),
-  lastName: z.string().min(1, 'The field is required'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must contain at least 8 characters'),
-  confirmPassword: z.string().min(8, 'Password must contain at least 8 characters'),
-  acceptTermsCheckbox: z.boolean().refine((value) => value === true, {
-    message: 'You must accept the terms and conditions',
-  }),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Passwords must match',
-  path: ['confirmPassword'],
-});
+const schema = z
+  .object({
+    firstName: z.string().min(1, 'The field is required'),
+    lastName: z.string().min(1, 'The field is required'),
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(8, 'Password must contain at least 8 characters'),
+    confirmPassword: z
+      .string()
+      .min(8, 'Password must contain at least 8 characters'),
+    acceptTermsCheckbox: z.boolean().refine((value) => value === true, {
+      message: 'You must accept the terms and conditions',
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords must match',
+    path: ['confirmPassword'],
+  })
 
 // SignUp Component
 export const SignUp = () => {
-  const onSubmit = (data) => {
-    console.log('Form submitted:', data);
-  };
+
+  const onSubmit = async (data) => {
+    console.log('dane z formularza' , data)
+    registerUser(data)
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -54,7 +62,13 @@ export const SignUp = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <FormContextProvider onSubmit={onSubmit} schema={schema} component="form" sx={{ mt: 3 }} noValidate>
+        <FormContextProvider
+          onSubmit={onSubmit}
+          schema={schema}
+          component="form"
+          sx={{ mt: 3 }}
+          noValidate
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <CommonTextField name="firstName" label="First Name" />
@@ -66,10 +80,20 @@ export const SignUp = () => {
               <CommonTextField name="email" label="Email Address" fullWidth />
             </Grid>
             <Grid item xs={12}>
-              <CommonTextField name="password" label="Password" type="password" fullWidth />
+              <CommonTextField
+                name="password"
+                label="Password"
+                type="password"
+                fullWidth
+              />
             </Grid>
             <Grid item xs={12}>
-              <CommonTextField name="confirmPassword" label="Confirm Password" type="password" fullWidth />
+              <CommonTextField
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                fullWidth
+              />
             </Grid>
             <Grid item xs={12}>
               <Controller
@@ -87,7 +111,12 @@ export const SignUp = () => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
             Sign Up
           </Button>
           <Grid container justifyContent="flex-end">
@@ -100,5 +129,5 @@ export const SignUp = () => {
         </FormContextProvider>
       </Box>
     </Container>
-  );
-};
+  )
+}

@@ -171,6 +171,33 @@
       "email": "coderslab@gmail.com",
       "password": "$2a$10$mXzxTRHPsU/ZzM3hJnqok.SXv7ws0N2hiv/s4QJm9C4thgs5FBWCe",
       "id": 1
+    },
+    {
+      "email": "tachotech@gmail.com",
+      "password": "$2a$10$1VvrDpCO/vlz/MCWtnVlSOWpqPtDef0wz0QWyvkYlM.k51YocF/eC",
+      "firstName": "Tomasz",
+      "lastName": "Skierś",
+      "confirmPassword": "rrrruuuu",
+      "acceptTermsCheckbox": true,
+      "id": 2
+    },
+    {
+      "email": "michal@gmail.com",
+      "password": "$2a$10$eSfKHMS6in/8.GDT/0QoCeYBJLaDhqGx29Etc5.TuaVerZFiu.MEu",
+      "firstName": "Michał",
+      "lastName": "Skierś",
+      "confirmPassword": "michalek",
+      "acceptTermsCheckbox": true,
+      "id": 3
+    },
+    {
+      "email": "gabriela@gmail.com",
+      "password": "$2a$10$zLe1WCDqNpz4sRBx7H6doO4hzi5pGWWatk66BBPDGCKhfqYjEl8Oe",
+      "firstName": "Gabriela",
+      "lastName": "Skierś",
+      "confirmPassword": "gabriela16",
+      "acceptTermsCheckbox": true,
+      "id": 4
     }
   ]
 }
