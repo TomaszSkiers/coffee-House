@@ -16,6 +16,10 @@ pazamieniać funkcje z context api na akcje z reducera
 
 * przekierowanie do logowania po utworzeniu nowego użytkownika,
 
+* jak zorganizować sobie dostarczanie danych do stanu i czy to w ogóle jest potrzebne,
+    bo jak tak się nad tym zastanowić to dane są w localStorage i w sumie to wystarczy
+    nie wiem po co organizować całego użytkownika
+
 
 2. utworzyć koszyk zakupowy za pomoca redux toolkita
 

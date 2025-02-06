@@ -10,7 +10,8 @@ import { SignUp } from './pages/sign-up'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LoginConfirmation } from './pages/login-confirmation'
 import { Dashboard } from './pages/dashboard/dashboard'
-import { UserProvider } from './contexts/signIn-login-context/userContext'
+
+
 
 const AppStructure = () => {
   return (
@@ -25,10 +26,14 @@ const AppStructure = () => {
 }
 
 export const App = () => {
+
+
+
   const queryClient = new QueryClient()
 
+
   return (
-    <UserProvider>
+    
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
@@ -44,6 +49,6 @@ export const App = () => {
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
-    </UserProvider>
+    
   )
 }

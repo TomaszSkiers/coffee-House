@@ -15,8 +15,8 @@ import { getAuthToken, login, logOut } from '../../api/user.js'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { UserContext } from '../../contexts/signIn-login-context/userContext.jsx'
-import { useContext } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../redux/userSlice.js'
 
 
 
@@ -25,8 +25,11 @@ const schema = z.object({
   password: z.string().min(6, 'password must hava at least 6 characters'),
   rememberMe: z.boolean().optional(),
 })
+// Login start
 export const Login = () => {
-  const {setUserName} = useContext(UserContext)
+
+  const dispatch = useDispatch()
+ 
   const {
     register,
     handleSubmit,
@@ -39,7 +42,10 @@ export const Login = () => {
 
   const handleLogOut = () => {
     logOut()
-    setUserName('login')
+    dispatch(setUser({
+      name: 'login',
+      accessToken: null,
+    }))
     navigate('/')
   }
 
@@ -49,7 +55,12 @@ export const Login = () => {
       const userData = await login(data)
       //te dane mogę nie wiem może wyświetlić w dashboard
       // console.log(userData.user.firstName)
-      setUserName(userData.user.firstName)
+
+      dispatch(setUser({
+        name: userData.user.firstName,
+        accessToken: userData.accessToken,
+      }))
+
       navigate('/confirmation')
     } catch (err) {
       console.log('niepoprawne dane logowania')

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, NavLink } from 'react-router-dom';
 import { fetchCategories } from '../../api/products.js';
 import AppBar from '@mui/material/AppBar';
@@ -13,7 +13,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import CoffeeIcon from '@mui/icons-material/LocalCafe';
 import { useColorMode } from '../../contexts/color-mode/color-mode-context.jsx';
-import { UserContext } from '../../contexts/signIn-login-context/userContext.jsx';
+import { useSelector } from 'react-redux';
+import { selectUserName } from '../../redux/userSlice.js';
 
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
@@ -26,13 +27,13 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+//Navigation
 export const Navigation = () => {
   const [categories, setCategories] = useState([]);
   const {mode, toggleColorMode} = useColorMode()
-  const {userName} = useContext(UserContext)
- 
-  console.log('nazwa użytkownika')
-  
+
+  const userName = useSelector(selectUserName)
+
   const fetchData = async () => {
     const data = await fetchCategories();
     setCategories(data);
