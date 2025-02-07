@@ -41,6 +41,12 @@ ZROBIONE:
 - możliwość dodania ilości produktów,
 - podsumowanie i cena końcowa,
 
+* zastanowić się czy można dodawać produkty do koszyka jak jesteś nie zalogowany?
+- jak można to później przy dodawaniu zamówienia musi być możliwość wpisania danych
+    użytkownika i adresu, 
+- a jak użytkownik jest zalogownay to można w bazie danych 
+    trzymać jego dane jak adres, nr kontaktowy telefonu, dane do faktury
+
 * i teraz przejście do procedury tworzenia zamówienia
 - przycisk, który rozpoczyna dodawanie zamówienia,
 - input do wprowadzenia adresu do wysyłki,
@@ -52,7 +58,9 @@ później będę myślał nad dodaniem zamówienia
 ZROBIONE: 
 - utworzony slice z akcjami, trzeba potestować, dodawanie produktów do stanu 
     działa reszta nie ruszona,
-- dodałem ikonkę z ilością produktów w koszyku, nie podłaczyłem do store,  
+- dodałem ikonkę z ilością produktów w koszyku, i podłaczyłem do store, 
+- dodałem prościutki komponencik Cart, pobiera items ze strea, przechodzimy do niego z 
+- klikając przycisk koszyka w navigacji, 
 --------------------------------------------------------------------------------
 
 

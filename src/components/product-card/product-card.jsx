@@ -24,6 +24,7 @@ const ProductCardComponent = ({ id, image, title, description, price }) => {
       id: id,
       title: title,
       price: price,
+      image: image,
     }
     dispatch(addItem({...product, quantity: 1}))
   }

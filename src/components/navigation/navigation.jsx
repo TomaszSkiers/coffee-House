@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link as RouterLink, NavLink } from 'react-router-dom';
+import { Link as RouterLink, NavLink, useNavigate } from 'react-router-dom';
 import { fetchCategories } from '../../api/products.js';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -34,10 +34,12 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 // podłączyć ilość produktów do ikonki
 
 export const Navigation = () => {
+  const navigate = useNavigate()
   const [categories, setCategories] = useState([]);
   const {mode, toggleColorMode} = useColorMode()
 
   const userName = useSelector(selectUserName)
+  const itemsCount = useSelector(state => state.cart.items.reduce((total, item) => total + item.quantity, 0))
 
   const fetchData = async () => {
     const data = await fetchCategories();
@@ -82,9 +84,9 @@ export const Navigation = () => {
         >
           {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
-        <IconButton color='inherit'>
-          {/** podłączyć pod ilość produktów do strea  */}
-          <Badge badgeContent={4} color='secondary'>
+        <IconButton color='inherit' onClick={()=>{navigate('/cart')}}>
+          
+          <Badge badgeContent={itemsCount} color='secondary'>
             <ShoppingCartIcon />
           </Badge>
         </IconButton>

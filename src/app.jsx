@@ -10,6 +10,7 @@ import { SignUp } from './pages/sign-up'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LoginConfirmation } from './pages/login-confirmation'
 import { Dashboard } from './pages/dashboard/dashboard'
+import Cart from './pages/cart/cart'
 
 
 
@@ -45,6 +46,7 @@ export const App = () => {
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/confirmation" element={<LoginConfirmation />} />
               <Route path="/dash" element={<Dashboard />} />
+              <Route path='/cart' element={<Cart />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -1,0 +1,3 @@
+Jak powinien wyglądać komponent koszyk? 
+
+1. 
