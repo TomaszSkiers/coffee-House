@@ -1,4 +1,10 @@
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom'
 import { Container } from '@mui/material'
 import { Home } from './pages/home'
 import { Category } from './pages/category'
@@ -12,45 +18,40 @@ import { LoginConfirmation } from './pages/login-confirmation'
 import { Dashboard } from './pages/dashboard/dashboard'
 import Cart from './pages/cart/cart'
 
-
-
 const AppStructure = () => {
+  const location = useLocation()
+  const hiddenFooterRoutes = ['/cart']
+
   return (
     <>
       <Navigation />
       <Container sx={{ flexGrow: '1' }}>
         <Outlet />
       </Container>
-      <Footer />
+      {!hiddenFooterRoutes.includes(location.pathname) && <Footer />}
     </>
   )
 }
 
 export const App = () => {
-
-
-
   const queryClient = new QueryClient()
 
-
   return (
-    
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppStructure />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/category/:id" element={<Category />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/confirmation" element={<LoginConfirmation />} />
-              <Route path="/dash" element={<Dashboard />} />
-              <Route path='/cart' element={<Cart />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
-    
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppStructure />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/category/:id" element={<Category />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/confirmation" element={<LoginConfirmation />} />
+            <Route path="/dash" element={<Dashboard />} />
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   )
 }

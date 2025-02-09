@@ -17,8 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useDispatch } from 'react-redux'
 import { setUser } from '../../redux/userSlice.js'
-
-
+import { useTheme } from '@emotion/react'
 
 const schema = z.object({
   email: z.string().email('invalid email'),
@@ -27,25 +26,27 @@ const schema = z.object({
 })
 // Login start
 export const Login = () => {
-
   const dispatch = useDispatch()
- 
+  const theme = useTheme()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema)
+    resolver: zodResolver(schema),
   })
   const accessToken = getAuthToken()
   const navigate = useNavigate()
 
   const handleLogOut = () => {
     logOut()
-    dispatch(setUser({
-      name: 'login',
-      accessToken: null,
-    }))
+    dispatch(
+      setUser({
+        name: 'login',
+        accessToken: null,
+      })
+    )
     navigate('/')
   }
 
@@ -56,10 +57,12 @@ export const Login = () => {
       //te dane mogę nie wiem może wyświetlić w dashboard
       // console.log(userData.user.firstName)
 
-      dispatch(setUser({
-        name: userData.user.firstName,
-        accessToken: userData.accessToken,
-      }))
+      dispatch(
+        setUser({
+          name: userData.user.firstName,
+          accessToken: userData.accessToken,
+        })
+      )
 
       navigate('/confirmation')
     } catch (err) {
@@ -69,12 +72,11 @@ export const Login = () => {
 
   if (accessToken) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
-        <Button onClick={handleLogOut}>Log out</Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 25, p: 10, backgroundColor: theme.palette.background.paper }}>
+        <Button sx={{p: 3}} onClick={handleLogOut}>Log out</Button>
       </Box>
     )
   }
-
 
   return (
     <Container component="form" onSubmit={handleSubmit(onSubmit)} maxWidth="xs">
@@ -94,17 +96,17 @@ export const Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <TextField 
+        <TextField
           label="Email"
-          variant='outlined'
+          variant="outlined"
           fullWidth
           {...register('email')}
           error={!!errors.email}
           helperText={errors.email?.message}
-          />
-        <TextField 
+        />
+        <TextField
           label="Password"
-          variant='outlined'
+          variant="outlined"
           fullWidth
           {...register('password')}
           error={!!errors.password}

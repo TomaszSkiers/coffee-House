@@ -47,6 +47,8 @@ ZROBIONE:
 - a jak użytkownik jest zalogownay to można w bazie danych 
     trzymać jego dane jak adres, nr kontaktowy telefonu, dane do faktury
 
+* zastanowić się nad zapisaniem koszyka do bazy danych
+
 * i teraz przejście do procedury tworzenia zamówienia
 - przycisk, który rozpoczyna dodawanie zamówienia,
 - input do wprowadzenia adresu do wysyłki,
@@ -56,11 +58,11 @@ później będę myślał nad dodaniem zamówienia
 
 
 ZROBIONE: 
-- utworzony slice z akcjami, trzeba potestować, dodawanie produktów do stanu 
-    działa reszta nie ruszona,
-- dodałem ikonkę z ilością produktów w koszyku, i podłaczyłem do store, 
-- dodałem prościutki komponencik Cart, pobiera items ze strea, przechodzimy do niego z 
-- klikając przycisk koszyka w navigacji, 
+- funkcjonalność koszyka ukończona, teraz trzeba popracować nad responsywnością, 
+    zastosować grid żeby przy mniejszych ekranach zdjęcie było na górze a reszta info
+    pod zdjęciem, przyciski na samym dole, 
+    dobrze by było wejść na jakąś stronę i się nie cmokać tylko skopiować jakieś fajne
+    rozwiązanie !!!
 --------------------------------------------------------------------------------
 
 

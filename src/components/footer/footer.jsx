@@ -1,22 +1,21 @@
-import React from "react";
-import { Box, Container, Typography, IconButton } from "@mui/material";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import { Box, Container, Typography, IconButton } from '@mui/material'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import InstagramIcon from '@mui/icons-material/Instagram'
 
 export const Footer = () => {
   return (
     <Box
       component="footer"
-      sx={{ my: 4, borderTop: 1, borderColor: "divider" }}
+      sx={{ my: 4, borderTop: 1, borderColor: 'divider' }}
     >
       <Container
         maxWidth="lg"
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignItems: "center",
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           py: 3,
         }}
       >
@@ -29,7 +28,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} Coffee House, Inc
           </Typography>
         </Box>
-        <Box sx={{ flex: 1, display: "flex", justifyContent: "end" }}>
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'end' }}>
           <IconButton href="#" color="inherit" aria-label="Twitter">
             <TwitterIcon />
           </IconButton>
@@ -42,5 +41,5 @@ export const Footer = () => {
         </Box>
       </Container>
     </Box>
-  );
-};
+  )
+}
