@@ -1,14 +1,13 @@
-import { Box, Container, Typography } from '@mui/material';
+import { useTheme } from '@emotion/react'
+import { useMediaQuery } from '@mui/material'
+import { DashboardMobileView } from './DashboardMobileView'
+import { DashboardDesktopView } from './DashboardDesktopView'
 
-export const Dashboard = () => {
-  // co ma być w dashboard:
-  // imie i nazwisko uzytkownika
-  // jego zamówienia
-  return (
-    <Container component="main" maxWidth="xs" sx={{ height: '100%' }}>
-      <Box>
-        <Typography variant="h2">Here will be dashbord component</Typography>
-      </Box>
-    </Container>
-  );
-};
+export function Dashboard() {
+  const theme = useTheme()
+  const isxs = useMediaQuery(theme.breakpoints.down('sm'))
+
+  if (isxs) return <DashboardMobileView />
+
+  if (!isxs) return <DashboardDesktopView />
+}

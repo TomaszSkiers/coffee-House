@@ -72,8 +72,9 @@ export const Login = () => {
 
   if (accessToken) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 25, p: 10, backgroundColor: theme.palette.background.paper }}>
+      <Box sx={{ display: 'flex',flexDirection: 'column', justifyContent: 'center', mt: 25, p: 10, backgroundColor: theme.palette.background.paper }}>
         <Button sx={{p: 3}} onClick={handleLogOut}>Log out</Button>
+        <Button sx={{p: 3}} onClick={()=> navigate('/dash')}>Dashboard</Button>
       </Box>
     )
   }

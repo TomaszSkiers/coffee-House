@@ -13,7 +13,8 @@ import {
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles'
+import { Link as RouterLink } from 'react-router-dom'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -42,14 +43,22 @@ const Cart = () => {
   }
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 1000, margin: 'auto', mt: 10, position: 'relative' }}>
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: 1000,
+        margin: 'auto',
+        mt: 10,
+        position: 'relative',
+      }}
+    >
       <Typography variant="h5" gutterBottom>
         Shopping Cart
       </Typography>
       {cartItems.length === 0 ? (
         <Typography variant="body1">Your cart is empty.</Typography>
       ) : (
-        <List sx={{mb: '115px'}}>
+        <List sx={{ mb: '115px' }}>
           {cartItems.map((item, index) => (
             <ListItem
               key={index}
@@ -57,18 +66,27 @@ const Cart = () => {
               sx={{
                 display: 'flex',
                 p: 0,
-                
               }}
             >
-              <Grid container sx={{height: 150}}>
-                <Grid item xs={4} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Grid container sx={{ height: 150 }}>
+                <Grid
+                  item
+                  xs={4}
+                  md={3}
+                  sx={{ display: 'flex', justifyContent: 'center' }}
+                >
                   <CardMedia
                     component="img"
-                    sx={{ maxWidth: '150px', minWidth: 120}}
+                    sx={{ maxWidth: '150px', minWidth: 120 }}
                     image={`/products/${item.image}`}
                   />
                 </Grid>
-                <Grid item xs={8} md={9} sx={{display: 'flex', flexDirection: 'column'}}>
+                <Grid
+                  item
+                  xs={8}
+                  md={9}
+                  sx={{ display: 'flex', flexDirection: 'column' }}
+                >
                   <Typography
                     variant="h6"
                     sx={{
@@ -87,15 +105,31 @@ const Cart = () => {
                   <Typography variant="body1" sx={{ ml: 2 }}>
                     quantity: {item.quantity} piece
                   </Typography>
-                  <Box sx={{display: 'flex',flex: 1, alignItems: 'center', ml: 2}}>
-                    <IconButton sx={{width: 30, height: 30}} onClick={()=> handleDecreaseQuantity(item)}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flex: 1,
+                      alignItems: 'center',
+                      ml: 2,
+                    }}
+                  >
+                    <IconButton
+                      sx={{ width: 30, height: 30 }}
+                      onClick={() => handleDecreaseQuantity(item)}
+                    >
                       <RemoveIcon />
                     </IconButton>
-                    <IconButton sx={{width: 30, height: 30}} onClick={()=> handleIncreaseQuantity(item)}>
+                    <IconButton
+                      sx={{ width: 30, height: 30 }}
+                      onClick={() => handleIncreaseQuantity(item)}
+                    >
                       <AddIcon />
                     </IconButton>
-                    <IconButton sx={{width: 30, height: 30}} onClick={()=> handleRemoveItem(item)}>
-                      <DeleteIcon color='secondary'/>
+                    <IconButton
+                      sx={{ width: 30, height: 30 }}
+                      onClick={() => handleRemoveItem(item)}
+                    >
+                      <DeleteIcon color="secondary" />
                     </IconButton>
                   </Box>
                 </Grid>
@@ -120,13 +154,13 @@ const Cart = () => {
           backgroundColor: theme.palette.background.paper,
           p: 2,
           boxShadow: 3,
-          pb: isMobile ? 5 : null
+          pb: isMobile ? 5 : null,
         }}
       >
         <Typography variant="h6" textAlign="center">
           Total Price: {totalPrice.toFixed(2)} $
         </Typography>
-        <Button variant="contained" color="primary" fullWidth>
+        <Button color="primary" fullWidth component={RouterLink} to="/order">
           Proceed to Checkout
         </Button>
       </Box>

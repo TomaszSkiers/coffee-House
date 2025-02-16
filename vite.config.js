@@ -12,4 +12,9 @@ const exercisePath = '';
 export default defineConfig({
   root: exercisePath,
   plugins: [react()],
+  server: {
+    host: '0.0.0.0', // Udostępnia w sieci lokalnej
+    port: 5173, // Możesz zmienić port, jeśli potrzebujesz
+    strictPort: true,
+  },
 });

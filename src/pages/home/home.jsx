@@ -1,24 +1,26 @@
-import { useEffect, useState } from 'react';
-import { Hero } from '../../components/hero';
-import { ProductCard } from '../../components/product-card';
-import { Box, CircularProgress, Grid, Typography } from '@mui/material';
-import { fetchCategories } from '../../api/products';
+import { useEffect, useState } from 'react'
+import { Hero } from '../../components/hero'
+import { ProductCard } from '../../components/product-card'
+import { Box, CircularProgress, Grid, Typography } from '@mui/material'
+import { fetchCategories } from '../../api/products'
 
 export const Home = () => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchCategories({ embedProducts: true, limitProducts: 4 });
-      setCategories(data);
-    };
+      const data = await fetchCategories({
+        embedProducts: true,
+        limitProducts: 4,
+      })
+      setCategories(data)
+    }
 
-    fetchData();
-  }, []);
-
+    fetchData()
+  }, [])
 
   return (
-    <>
+    <Box sx={{maxWidth: '1000px', margin: 'auto', mt: '70px'}}>
       <Hero />
       {!categories.length ? (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -38,6 +40,6 @@ export const Home = () => {
           </Box>
         ))
       )}
-    </>
-  );
-};
+    </Box>
+  )
+}

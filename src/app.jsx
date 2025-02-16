@@ -17,15 +17,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LoginConfirmation } from './pages/login-confirmation'
 import { Dashboard } from './pages/dashboard/dashboard'
 import Cart from './pages/cart/cart'
+import { MainOrder } from './pages/order/MainOrder'
 
 const AppStructure = () => {
   const location = useLocation()
-  const hiddenFooterRoutes = ['/cart']
+  const hiddenFooterRoutes = ['/cart','/dash', '/order']
 
   return (
     <>
       <Navigation />
-      <Container sx={{ flexGrow: '1' }}>
+      <Container sx={{ flexGrow: '1'}}>
         <Outlet />
       </Container>
       {!hiddenFooterRoutes.includes(location.pathname) && <Footer />}
@@ -49,6 +50,7 @@ export const App = () => {
             <Route path="/confirmation" element={<LoginConfirmation />} />
             <Route path="/dash" element={<Dashboard />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path='/order' element={<MainOrder />} />
           </Route>
         </Routes>
       </BrowserRouter>
