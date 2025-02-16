@@ -34,7 +34,8 @@ export function ColorModeProvider({ children }) {
             default: mode === 'dark' ? '#121212' : '#f0f0f0',
             paper: mode === 'dark' ? '#1e1e1e' : '#ffffff'
           },
-          customGreen: mode === 'dark' ? 'lightgreen' : 'green'
+          customGreen: mode === 'dark' ? 'lightgreen' : 'green',
+          customBlue: mode === 'dark' ? 'lightblue' : 'blue',
         },
       }),
     [mode]

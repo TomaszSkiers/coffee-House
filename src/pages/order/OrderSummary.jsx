@@ -4,6 +4,7 @@ import { CustomDialog } from './CustomDialog'
 import { UserData } from './UserData'
 import { useTheme } from '@emotion/react'
 import { ProductList } from './ProductsList'
+import { PaymentMethods } from './PaymentMethods'
 
 export function OrderSummary() {
   const [open, setOpen] = useState(false)
@@ -31,6 +32,7 @@ export function OrderSummary() {
       <ProductList />
 
       {/** here will insert component that display payment methods */}
+      <PaymentMethods />
 
       <Button onClick={() => setOpen(true)}>open dialog</Button>
       <CustomDialog

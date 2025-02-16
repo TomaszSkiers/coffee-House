@@ -7,6 +7,7 @@ import {OrderSummary} from './OrderSummary'
 
 export function MainOrder() {
   const { name, surname, email, phone, address } = useSelector(selectUserObject)
+  
 
   const requiredFields = [name, surname, email, phone, address]
 
