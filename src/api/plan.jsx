@@ -48,7 +48,7 @@
 //     
 //*     pobrać i wyświetlić dane o użytkowniku
 //*     pobrać i wyświetlić produkty z koszyka 
-//*     utworzyć listę wyboru z opcjami do zapłaty
+//*     utworzyć listę wyboru z opcjami do zapłaty <-- tu jestem
 //*     przycisk do potwierdzenia zamówienia
 //*     okienko dialog do zatwierdzenia zamówienia lub jego anulowania
 
@@ -94,4 +94,5 @@
     // --------------------------------------------------------------------------------
 
 
-
+// do tej pory myślałem tylko od strony klienta, czyli jak wygląda moje zamówienie ale jeszcze 
+// trzeba przemyśleć od strony sklepu, jak spływają wszystkie zamówienia i jak je realizować 

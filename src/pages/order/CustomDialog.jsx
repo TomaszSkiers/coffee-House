@@ -15,7 +15,13 @@ const buttonStyle = {
   fontSize: '1rem',
 }
 
-export function CustomDialog({ open, onClose, title, children }) {
+export function CustomDialog({
+  open,
+  onClose,
+  title,
+  children,
+  onlyClose = false,
+}) {
   const theme = useTheme()
 
   return (
@@ -31,19 +37,36 @@ export function CustomDialog({ open, onClose, title, children }) {
       <DialogContent>{children}</DialogContent>
       <DialogActions>
         <Button
-          sx={buttonStyle}
+          sx={{
+            ...buttonStyle,
+            flexGrow: onlyClose ? 1 : 0, // Jeśli onlyClose === true, przycisk zajmie całe miejsce
+          }}
+          variant='contained'
           startIcon={<HighlightOffIcon />}
           onClick={onClose}
+          
         >
-          Close
+          { !onlyClose ? 'cancel' : 'close'}
         </Button>
-        <Button
-          sx={buttonStyle}
-          startIcon={<CheckCircleIcon color="secondary" />}
-        >
-          Confirm
-        </Button>
+        {!onlyClose ? (
+          <Button
+            sx={buttonStyle}
+            variant='contained'
+            startIcon={<CheckCircleIcon color="secondary" />}
+          >
+            Confirm
+          </Button>
+        ) : null}
       </DialogActions>
     </Dialog>
   )
 }
+
+/**
+ * przed wysłaniem zamówienia sprawdzić czy wybrano metodę płatności albo ustawić jakąś domyślną
+ *
+ *
+ * tu muszę sobie wszystkie informacji użyte w zamówieniu, użytkownik, listę produktów, podsumowanie ceny
+ * metodę płatności, numer zamówienia zapisać do store, i to był by koniec zamówienia
+ * jeszcze może jakaś informacjia o
+ */

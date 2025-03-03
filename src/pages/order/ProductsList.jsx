@@ -23,7 +23,7 @@ export function ProductList() {
         label=""
         value={
           <>
-            <Typography sx={{ color: 'red' }}>
+            <Typography component="span" sx={{ color: 'red' }}>
               brak produktów w koszyku
             </Typography>
             <Link to="/">przejdź na stronę domową</Link>
@@ -56,7 +56,7 @@ export function ProductList() {
             label={index + 1}
             value={
               <>
-                {product.title} / quantity:
+                <span>{product.title}</span> / quantity:
                 <span
                   style={{
                     color: theme.palette.customGreen,
@@ -83,7 +83,7 @@ export function ProductList() {
 
       <FakeTextField
         label="total price:"
-        value={<Typography color="red">{totalPrice} $</Typography>}
+        value={<Typography component="span" color="red">{totalPrice} $</Typography>}
         sx={{ mt: 2 }}
       />
 
@@ -92,15 +92,3 @@ export function ProductList() {
     </Box>
   )
 }
-// gdy nie ma produktu nie wejdziesz na kartę order, chociaż możesz
-// wpisać w przeglądarce /order i co wtedy, zobaczmy,
-/**
- * no i uruchamia się karta bez produktów tylko z informacjami o użytkowniku,
- * tu powinno być zabezpieczenie i przekierowanie do home
- */
-
-/**
- * i kolejna rozkminka, chyba będzie najlepiej jak po prostu wygeneruję informację, że nie ma
- * produktów w koszyku -> dodaj jakiś produkt i już, bo przekierowanie będzie mylące, użytkownik
- * nie będzie wiedział co się dzieje
- */
