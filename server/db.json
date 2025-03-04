@@ -165,7 +165,36 @@
       "slug": "accessories"
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 101,
+          "name": "Laptop",
+          "price": 2500,
+          "quantity": 1
+        },
+        {
+          "productId": 102,
+          "name": "Mouse",
+          "price": 50,
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 2600,
+      "shippingAddress": {
+        "street": "123 Main St",
+        "city": "Warszawa",
+        "zipCode": "00-001",
+        "country": "Polska"
+      },
+      "paymentMethod": "credit_card",
+      "status": "pending",
+      "createdAt": "2025-03-04T11:19:11.753Z"
+    }
+  ],
   "users": [
     {
       "email": "coderslab@gmail.com",

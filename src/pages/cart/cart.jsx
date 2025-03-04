@@ -160,7 +160,7 @@ const Cart = () => {
         <Typography variant="h6" textAlign="center">
           Total Price: {totalPrice.toFixed(2)} $
         </Typography>
-        <Button color="primary" fullWidth component={RouterLink} to="/order">
+        <Button variant='contained' color="primary" fullWidth component={RouterLink} to="/order">
           Proceed to Checkout
         </Button>
       </Box>

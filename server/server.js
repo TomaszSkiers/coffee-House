@@ -1,15 +1,22 @@
 import jsonServer from "json-server";
-import auth from "json-server-auth";
 import path from "path";
 import { fileURLToPath } from "url";
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import cors from "cors";
+
+// Ustawienie klucza tajnego i zmiennej środowiskowej dla json-server-auth
+const SECRET_KEY = "4f1b18eae3dc6e9d8b622bfa2d1e7382b4513c9eb2a3784917a9eb33d7a7ebea";
+/* global process */
+
+process.env.JWT_SECRET = SECRET_KEY;
+
+import auth from "json-server-auth"; // Importujemy po ustawieniu JWT_SECRET
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SECRET_KEY = "your-secret-key"; // Zmień na bezpieczny klucz JWT
 const server = express();
 const router = jsonServer.router(path.resolve(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
@@ -17,7 +24,9 @@ const middlewares = jsonServer.defaults();
 server.db = router.db;
 server.use(middlewares);
 server.use(express.json());
-server.use(auth);
+server.use(cors());
+
+// Niestandardowe endpointy umieszczone przed middleware auth
 
 // 🟢 Rejestracja użytkownika
 server.post("/register", async (req, res) => {
@@ -41,8 +50,8 @@ server.post("/register", async (req, res) => {
   const newUser = {
     id: users.length + 1, // Generowanie ID
     email,
-    password: hashedPassword, // Zapisujemy zaszyfrowane hasło
-    confirmPassword, // Zostawiamy oryginalne hasło jako pole (jeśli tego wymagasz)
+    password: hashedPassword,
+    confirmPassword, // Dla nauki – pozostawiamy oryginalne hasło
     firstName,
     lastName,
     acceptTermsCheckbox,
@@ -90,6 +99,80 @@ server.post("/login", async (req, res) => {
   });
 });
 
+// 🟢 Składanie zamówienia (z autoryzacją JWT)
+server.post("/orders", (req, res) => {
+  console.log("🔹 Endpoint /orders został wywołany!");
+
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    console.log("🔴 Brak nagłówka Authorization");
+    return res.status(401).json({ message: "Authorization token required" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    console.log("✅ Token JWT poprawnie zweryfikowany:", decoded);
+
+    const userId = decoded.userId;
+    console.log("👤 Użytkownik ID:", userId);
+
+    const { items, totalPrice, shippingAddress, paymentMethod } = req.body;
+    if (!items || items.length === 0 || !totalPrice || !shippingAddress || !paymentMethod) {
+      console.log("🔴 Niepełne dane zamówienia!");
+      return res.status(400).json({ message: "All order fields are required" });
+    }
+
+    const newOrder = {
+      id: router.db.get("orders").value().length + 1,
+      userId,
+      items,
+      totalPrice,
+      shippingAddress,
+      paymentMethod,
+      status: "pending",
+      createdAt: new Date().toISOString(),
+    };
+
+    console.log("✅ Zamówienie utworzone:", newOrder);
+    router.db.get("orders").push(newOrder).write();
+
+    res.status(201).json({
+      success: true,
+      order: newOrder,
+      message: "Order placed successfully",
+    });
+  } catch (error) {
+    console.log("🔴 Błąd weryfikacji tokena:", error.message);
+    return res.status(403).json({ message: "Invalid or expired token" });
+  }
+});
+
+// 🟢 Pobieranie zamówień użytkownika (z autoryzacją JWT)
+server.get("/orders", (req, res) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Authorization token required" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, SECRET_KEY);
+    const userId = decoded.userId;
+
+    const userOrders = router.db.get("orders").filter({ userId }).value();
+
+    res.json({ success: true, orders: userOrders });
+  } catch (error) {
+    return res.status(403).json({ message: "Invalid or expired token" });
+  }
+});
+
+// Po endpointach niestandardowych dodajemy middleware json-server-auth
+server.use(auth);
 server.use(router);
 
 server.listen(4001, () => {

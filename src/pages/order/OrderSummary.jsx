@@ -67,7 +67,7 @@ export function OrderSummary() {
       <Button
         variant="contained"
         fullWidth
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, mb: 5 }}
         onClick={handleConfirm}
       >
         confirm order
